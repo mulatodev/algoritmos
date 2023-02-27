@@ -3,6 +3,7 @@ package com.arcadia.samples;
 import com.arcadia.samples.ordersmethods.OrderMethods;
 import com.arcadia.samples.random.RandomNumbers;
 import com.arcadia.samples.utils.WriteToDisk;
+import com.arcadia.samples.stringmethods.StringMethods;
 
 /**
  *
@@ -11,9 +12,16 @@ import com.arcadia.samples.utils.WriteToDisk;
 public class Samples {
 
     public static void main(String[] args) {
+
+        testOrderMethods();
+        
+        //testStringMethods();
+    }
+
+    private static void testOrderMethods(){
         
         int totalNumbersBase = 1024;
-        int totalNumbersMultiple = 128;
+        int totalNumbersMultiple = 8;
 
         int lBase = 1;
         int uBase = totalNumbersBase;
@@ -47,7 +55,7 @@ public class Samples {
         /* Start sorting process: bubble sort*/
         startTime = System.nanoTime();
         OrderMethods orderMethods = new OrderMethods(localArrayFixed);
-        localArray = orderMethods.BubbleSort_v3();
+        localArray = orderMethods.BidirectionalBubbleSort();
         endTime = System.nanoTime();
         System.out.println("Ordering ... " + 
                 Math.round((endTime - startTime)/1000000000) + " sec");
@@ -63,5 +71,15 @@ public class Samples {
         System.out.println("Print ordered numbers to file... " +
                 Math.round((endTime - startTime)/1000000000) + " sec");        
 
+    }
+    
+    public static void testStringMethods(){
+        
+        String reverseString = "";
+        
+        StringMethods stringMethods = new StringMethods();
+        reverseString = stringMethods.ReverseString("naranjo");
+        
+        System.out.println(reverseString);
     }
 }
