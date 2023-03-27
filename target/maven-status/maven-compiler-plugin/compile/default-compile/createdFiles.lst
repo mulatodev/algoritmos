@@ -1,5 +1,6 @@
 com/arcadia/samples/stringmethods/StringMethods.class
 com/arcadia/samples/random/RandomNumbers.class
 com/arcadia/samples/utils/WriteToDisk.class
+com/arcadia/samples/security/Password.class
 com/arcadia/samples/ordersmethods/OrderMethods.class
 com/arcadia/samples/Samples.class

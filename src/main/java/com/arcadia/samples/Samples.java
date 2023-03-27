@@ -4,7 +4,9 @@ import com.arcadia.samples.ordersmethods.OrderMethods;
 import com.arcadia.samples.random.RandomNumbers;
 import com.arcadia.samples.utils.WriteToDisk;
 import com.arcadia.samples.stringmethods.StringMethods;
-
+import com.arcadia.samples.security.Password;
+import com.arcadia.samples.security.GeneratePassword;
+import com.arcadia.samples.latinbox.LatinBox;
 /**
  *
  * @author ganaranjo
@@ -13,15 +15,19 @@ public class Samples {
 
     public static void main(String[] args) {
 
-        testOrderMethods();
+        //testOrderMethods();
         
         //testStringMethods();
+        
+        //testPassword();
+        
+        testLatinBox();
     }
 
     private static void testOrderMethods(){
         
         int totalNumbersBase = 1024;
-        int totalNumbersMultiple = 8;
+        int totalNumbersMultiple = 128;
 
         int lBase = 1;
         int uBase = totalNumbersBase;
@@ -55,7 +61,7 @@ public class Samples {
         /* Start sorting process: bubble sort*/
         startTime = System.nanoTime();
         OrderMethods orderMethods = new OrderMethods(localArrayFixed);
-        localArray = orderMethods.BidirectionalBubbleSort();
+        localArray = orderMethods.QuickSort(0, totalNumbers-1);
         endTime = System.nanoTime();
         System.out.println("Ordering ... " + 
                 Math.round((endTime - startTime)/1000000000) + " sec");
@@ -81,5 +87,35 @@ public class Samples {
         reverseString = stringMethods.ReverseString("naranjo");
         
         System.out.println(reverseString);
+    }
+    
+    public static void testPassword(){
+        
+        GeneratePassword genPass = new GeneratePassword();
+        
+        String password = "";
+        String message = "";
+        Password passwordUser = new Password();
+
+        for(int i=0;i<100;i++){
+            password = genPass.generatePassword();
+            passwordUser.setPassword(password);
+            
+            message = "The password is: " + password + " and ";
+
+            if (passwordUser.isStrong()){
+               message += "is good";
+            } else {
+                message += "is bad";
+            }
+            System.out.println(message);
+            password = "";
+        }        
+    }
+    
+    public static void testLatinBox(){
+        
+        LatinBox latinBox = new LatinBox(4);
+        latinBox.RunLatinBox();
     }
 }
